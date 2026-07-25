@@ -155,6 +155,16 @@ The table below reflects the exact empirical evaluation metrics on the test data
 
 ---
 
+## 👨‍💻 Authors
+
+1. Deepdas Somani
+2. Viraj Kumar Sahu
+3. Ayan Bhandari
+
+**Supervisor : Mr. Divanshu Jain**
+
+---
+
 ## ⚠️ Medical Disclaimer
 
 This software and web application are designed strictly for **academic research, scientific demonstration, and educational purposes**. It is **not** a certified medical diagnostic device and should **not** replace clinical evaluation, professional medical advice, or physician laboratory diagnosis.
