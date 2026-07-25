@@ -1,0 +1,7 @@
+Use:
+- SHAP plots
+- Model comparison graphs
+- ROC curves
+- Dataset statistics
+- Correlation heatmaps
+- Confusion matrices

@@ -1,0 +1,13 @@
+GridSearchCV Tuning Results Summary
+=============================
+Random Forest Best Params: {'max_depth': 8, 'n_estimators': 300}
+Random Forest Best CV ROC-AUC: 0.8179
+Random Forest Test ROC-AUC: 0.8341
+
+XGBoost Best Params: {'learning_rate': 0.05, 'max_depth': 4, 'n_estimators': 100}
+XGBoost Best CV ROC-AUC: 0.8147
+XGBoost Test ROC-AUC: 0.8341
+
+CatBoost Best Params: {'depth': 6, 'iterations': 100, 'learning_rate': 0.05}
+CatBoost Best CV ROC-AUC: 0.8205
+CatBoost Test ROC-AUC: 0.8341

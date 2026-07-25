@@ -1,0 +1,445 @@
+/* ============================================================
+   CKD Smart Diagnostics Hub — Theme-Aware Design System
+   Supports Light Mode, Dark Mode, and System Auto Mode
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+/* ============================================================
+   LIGHT MODE DEFAULT VARIABLES
+   ============================================================ */
+:root {
+    /* Brand Colors */
+    --navy-dark:    #0A1931;
+    --navy-medium:  #15305B;
+    --blue-accent:  #00D2C4;
+    --blue-light:   #EBF2FA;
+    --teal-soft:    #00a8a1;
+
+    /* Theme-aware surfaces */
+    --bg-primary:       #F0F4FA;
+    --bg-card:          #FFFFFF;
+    --bg-card-hover:    #F7FAFF;
+    --bg-card-alt:      #EBF2FA;
+    --bg-sidebar:       #0A1931;
+
+    /* Theme-aware text */
+    --text-heading:     #0A1931;
+    --text-subheading:  #15305B;
+    --text-body:        #2d3748;
+    --text-muted:       #64748B;
+    --text-card-muted:  #718096;
+
+    /* Borders */
+    --border-color:     #e2e8f0;
+    --border-card:      #CBD5E0;
+
+    /* Shadows */
+    --card-shadow:      0 4px 20px rgba(10, 25, 49, 0.08);
+    --card-shadow-hover: 0 8px 35px rgba(10, 25, 49, 0.14);
+
+    /* Misc */
+    --border-radius: 12px;
+    --border-radius-sm: 8px;
+}
+
+
+
+/* ============================================================
+   GLOBAL TYPOGRAPHY
+   ============================================================ */
+.stApp {
+    font-family: 'Outfit', sans-serif !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', sans-serif !important;
+}
+
+h1 {
+    color: var(--text-heading);
+    font-weight: 700 !important;
+}
+
+h2 {
+    color: var(--text-subheading);
+    font-weight: 600 !important;
+}
+
+h3 {
+    color: var(--text-subheading);
+    font-weight: 600 !important;
+}
+
+/* Ensure hero container headers are always crisp white */
+div[style*="linear-gradient"] h1,
+div[style*="linear-gradient"] h1 span:not([style*="00D2C4"]) {
+    color: #ffffff !important;
+}
+
+/* ============================================================
+   SIDEBAR — Always dark navy
+   ============================================================ */
+section[data-testid="stSidebar"] {
+    background-color: var(--bg-sidebar) !important;
+    font-family: 'Outfit', sans-serif !important;
+}
+
+section[data-testid="stSidebar"] * {
+    color: #FFFFFF !important;
+}
+
+
+section[data-testid="stSidebar"] a {
+    color: #8bb3e9 !important;
+}
+
+section[data-testid="stSidebar"] a:hover {
+    color: #00D2C4 !important;
+}
+
+/* ============================================================
+   METRIC CARDS — Theme-Aware
+   ============================================================ */
+.metric-card {
+    background-color: var(--bg-card);
+    border-left: 5px solid var(--navy-medium);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    box-shadow: var(--card-shadow);
+    margin-bottom: 1rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid var(--border-card);
+}
+
+.metric-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--card-shadow-hover);
+    background-color: var(--bg-card-hover);
+}
+
+.metric-card.accent {
+    border-left-color: var(--blue-accent);
+}
+
+.metric-val {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--navy-medium);
+    margin: 5px 0;
+    font-family: 'Outfit', sans-serif;
+}
+
+
+
+.metric-label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    font-weight: 600;
+    font-family: 'Outfit', sans-serif;
+}
+
+.metric-desc {
+    font-size: 0.8rem;
+    color: var(--text-card-muted);
+    margin-top: 4px;
+    line-height: 1.4;
+}
+
+/* ============================================================
+   STAT CARDS (Hero Section)
+   ============================================================ */
+.stat-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    border-radius: var(--border-radius);
+    padding: 1.75rem 1.5rem;
+    text-align: center;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #00D2C4, #15305B);
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--card-shadow-hover);
+}
+
+.stat-card .stat-num {
+    font-size: 2.6rem;
+    font-weight: 800;
+    color: var(--navy-medium);
+    line-height: 1;
+    margin-bottom: 0.35rem;
+    font-family: 'Outfit', sans-serif;
+}
+
+
+
+.stat-card .stat-label {
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--text-muted);
+    font-weight: 600;
+    font-family: 'Outfit', sans-serif;
+}
+
+/* ============================================================
+   CONTRIBUTION CARDS — Theme-Aware
+   ============================================================ */
+.contrib-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-card);
+    border-radius: var(--border-radius);
+    padding: 1.25rem;
+    box-shadow: var(--card-shadow);
+    margin-bottom: 1rem;
+    transition: transform 0.2s ease;
+}
+
+.contrib-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--card-shadow-hover);
+}
+
+.contrib-card h4 {
+    margin: 0 0 6px 0 !important;
+    font-size: 1rem !important;
+    font-family: 'Outfit', sans-serif;
+}
+
+.contrib-card p {
+    font-size: 0.85rem;
+    color: var(--text-card-muted);
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* ============================================================
+   TEAM MEMBER CARDS — Theme-Aware
+   ============================================================ */
+.team-card {
+    background-color: #FFFFFF;
+    border: 1px solid #CBD5E0;
+    border-top: 4px solid #15305B;
+    border-radius: var(--border-radius-sm);
+    padding: 1.25rem 1rem;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(10, 25, 49, 0.06);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.team-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(10, 25, 49, 0.12);
+}
+
+.team-card h4 {
+    margin: 0;
+    color: #0A1931 !important;
+    font-size: 1rem !important;
+    font-weight: 700 !important;
+    font-family: 'Outfit', sans-serif;
+}
+
+.team-card p {
+    font-size: 0.82rem;
+    color: #4A5568;
+    margin-top: 6px;
+    margin-bottom: 0;
+    line-height: 1.4;
+}
+
+.guide-card {
+    background-color: #F7FAFF;
+    border: 1px solid #CBD5E0;
+    border-top: 4px solid #00a8a1;
+    border-radius: var(--border-radius-sm);
+    padding: 1.25rem 1rem;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 168, 161, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.guide-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 168, 161, 0.15);
+}
+
+.guide-card h4 {
+    margin: 0;
+    color: #0A1931 !important;
+    font-size: 1rem !important;
+    font-weight: 700 !important;
+    font-family: 'Outfit', sans-serif;
+}
+
+.guide-card p {
+    font-size: 0.82rem;
+    color: #00a8a1;
+    margin-top: 6px;
+    margin-bottom: 0;
+    font-weight: 600;
+}
+
+
+
+/* ============================================================
+   CUSTOM ALERT BOX — Theme-Aware
+   ============================================================ */
+.custom-alert {
+    background-color: var(--bg-card-alt);
+    border-left: 5px solid var(--blue-accent);
+    color: var(--text-body);
+    padding: 1rem 1.25rem;
+    border-radius: var(--border-radius-sm);
+    margin: 1rem 0;
+    border: 1px solid var(--border-color);
+}
+
+.custom-alert strong {
+    color: var(--text-heading);
+}
+
+/* ============================================================
+   RISK / PREDICTION CARDS
+   ============================================================ */
+.risk-card-high {
+    background: linear-gradient(135deg, #7f1d1d22, #ef444411);
+    border: 2px solid #ef4444;
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.risk-card-medium {
+    background: linear-gradient(135deg, #78350f22, #f9731611);
+    border: 2px solid #f97316;
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.risk-card-low {
+    background: linear-gradient(135deg, #14532d22, #22c55e11);
+    border: 2px solid #22c55e;
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.risk-label {
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-family: 'Outfit', sans-serif;
+}
+
+/* ============================================================
+   PIPELINE FLOWCHART STEPS
+   ============================================================ */
+.pipeline-step {
+    background-color: var(--navy-medium);
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    width: 300px;
+    text-align: center;
+    box-shadow: var(--card-shadow);
+}
+
+/* ============================================================
+   TIMELINE ITEMS
+   ============================================================ */
+.timeline-phase-tag {
+    background-color: #15305B;
+    color: #FFFFFF;
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.timeline-phase-tag.accent {
+    background-color: #00a8a1;
+    color: #FFFFFF;
+}
+
+.timeline-phase-h {
+    margin: 6px 0 2px 0 !important;
+    color: #0A1931 !important;
+    font-size: 1.05rem !important;
+    font-weight: 700 !important;
+    font-family: 'Outfit', sans-serif !important;
+}
+
+.timeline-phase-desc {
+    font-size: 0.86rem;
+    color: #4A5568;
+    margin-top: 3px;
+    line-height: 1.5;
+}
+
+/* ============================================================
+   DATAFRAME / TABLE ENHANCEMENTS
+   ============================================================ */
+.stDataFrame {
+    border-radius: var(--border-radius) !important;
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+}
+
+/* ============================================================
+   EXPANDER STYLING
+   ============================================================ */
+.streamlit-expanderHeader {
+    border-radius: var(--border-radius-sm) !important;
+    font-weight: 600 !important;
+    font-family: 'Outfit', sans-serif !important;
+}
+
+/* ============================================================
+   NAVIGATION SIZE
+   ============================================================ */
+.st-emotion-cache-12fmhud {
+    font-size: 1.05rem;
+}
+
+/* ============================================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================================ */
+@media (max-width: 768px) {
+    .stat-card .stat-num {
+        font-size: 2rem;
+    }
+
+    .metric-val {
+        font-size: 1.8rem;
+    }
+}
+
+/* ============================================================
+   HIDE HEADING ANCHOR LINK ICONS
+   Streamlit adds a chain/clip icon to every heading on hover.
+   The actual data-testid is stHeaderActionElements (not stHeadingActionElements).
+   Both are listed as a safety net.
+   ============================================================ */
+[data-testid="stHeaderActionElements"],
+[data-testid="stHeadingActionElements"] {
+    display: none !important;
+}

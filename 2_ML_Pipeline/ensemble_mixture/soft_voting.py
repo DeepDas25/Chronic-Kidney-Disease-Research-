@@ -1,0 +1,138 @@
+import os
+def _find_data_file(filename):
+    current = os.path.dirname(os.path.abspath(__file__))
+    for _ in range(5):
+        for sub in [os.path.join("3_Datasets", "experiment_splits"), os.path.join("3_Datasets", "processed"), ""]:
+            cand = os.path.join(current, sub, filename)
+            if os.path.exists(cand):
+                return cand
+        current = os.path.dirname(current)
+    return os.path.join(os.path.dirname(os.path.abspath(__file__)), filename)
+
+import os
+import numpy as np
+import pandas as pd
+from sklearn.linear_model import LogisticRegression
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.naive_bayes import GaussianNB
+from sklearn.svm import SVC
+from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier, GradientBoostingClassifier
+from xgboost import XGBClassifier
+from lightgbm import LGBMClassifier
+from catboost import CatBoostClassifier
+
+from sklearn.metrics import (
+    accuracy_score,
+    precision_score,
+    recall_score,
+    f1_score,
+    roc_auc_score,
+    confusion_matrix,
+    classification_report
+)
+
+def main():
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    parent_dir = os.path.dirname(script_dir)
+    
+    # Load dataset splits
+    print("=" * 60)
+    print("[INFO] Loading datasets from parent directory...")
+    print("=" * 60)
+    X_train = pd.read_csv(_find_data_file("X_train_experiment.csv"))
+    X_test = pd.read_csv(_find_data_file("X_test_experiment.csv"))
+    y_train = pd.read_csv(_find_data_file("y_train_experiment.csv")).squeeze()
+    y_test = pd.read_csv(_find_data_file("y_test_experiment.csv")).squeeze()
+    
+    print(f"Train Shape: {X_train.shape}")
+    print(f"Test Shape : {X_test.shape}")
+    print("=" * 60)
+    
+    # -------------------------------------------------------------------------
+    # Soft Voting Classifier Ensemble (Tuned Top 3 + Baseline Other 8)
+    # -------------------------------------------------------------------------
+    print("\nTraining 11 Classifiers (Tuned Top 3: RF, XGBoost, CatBoost)...")
+    classifiers = {
+        "Logistic Regression": LogisticRegression(max_iter=5000, random_state=42),
+        "Decision Tree": DecisionTreeClassifier(max_depth=10, random_state=42),
+        "KNN": KNeighborsClassifier(n_neighbors=5),
+        "GaussianNB": GaussianNB(),
+        "SVM": SVC(kernel="rbf", probability=True, random_state=42),
+        "Random Forest": RandomForestClassifier(n_estimators=300, max_depth=12, random_state=42, n_jobs=-1),
+        "AdaBoost": AdaBoostClassifier(n_estimators=200, random_state=42),
+        "Gradient Boosting": GradientBoostingClassifier(n_estimators=300, random_state=42),
+        "XGBoost": XGBClassifier(n_estimators=100, max_depth=4, learning_rate=0.05, random_state=42, eval_metric="logloss"),
+        "LightGBM": LGBMClassifier(n_estimators=300, learning_rate=0.05, random_state=42, verbose=-1),
+        "CatBoost": CatBoostClassifier(iterations=200, depth=4, learning_rate=0.05, random_state=42, verbose=0)
+    }
+    
+    probs = {}
+    preds = {}
+    for name, clf in classifiers.items():
+        print(f"  Training {name}...")
+        clf.fit(X_train, y_train)
+        probs[name] = clf.predict_proba(X_test)[:, 1]
+        preds[name] = clf.predict(X_test)
+        
+    # Calculate Soft Voting Ensemble probabilities (Arithmetic Mean)
+    probs_df = pd.DataFrame(probs)
+    avg_probs = probs_df.mean(axis=1)
+    
+    # Simple Soft Voting Predictions (Standard 0.50 Threshold)
+    voting_preds = (avg_probs >= 0.50).astype(int)
+    
+    # Evaluate Soft Voting Ensemble
+    res_voting = {
+        "Model": "Soft Voting Ensemble",
+        "Accuracy": accuracy_score(y_test, voting_preds),
+        "Precision": precision_score(y_test, voting_preds, zero_division=0),
+        "Recall": recall_score(y_test, voting_preds, zero_division=0),
+        "F1": f1_score(y_test, voting_preds, zero_division=0),
+        "ROC_AUC": roc_auc_score(y_test, avg_probs)
+    }
+    
+    # Evaluate Individual Model Predictions
+    metrics_list = [res_voting]
+    for name in classifiers.keys():
+        acc = accuracy_score(y_test, preds[name])
+        prec = precision_score(y_test, preds[name], zero_division=0)
+        rec = recall_score(y_test, preds[name], zero_division=0)
+        f1 = f1_score(y_test, preds[name], zero_division=0)
+        auc = roc_auc_score(y_test, probs[name])
+        
+        metrics_list.append({
+            "Model": name,
+            "Accuracy": acc,
+            "Precision": prec,
+            "Recall": rec,
+            "F1": f1,
+            "ROC_AUC": auc
+        })
+            
+    # Combine all results into a DataFrame
+    results_df = pd.DataFrame(metrics_list)
+    
+    # Print voting ensemble results
+    print("\n" + "="*80)
+    print("SOFT VOTING ENSEMBLE RESULTS (THRESHOLD = 0.50)")
+    print("="*80)
+    print(results_df[results_df["Model"] == "Soft Voting Ensemble"].to_string(index=False))
+    print("="*80)
+    
+    # Save CSV
+    out_csv = os.path.join(script_dir, "soft_voting_results.csv")
+    results_df.to_csv(out_csv, index=False)
+    print(f"\n[SUCCESS] Saved detailed results to: {out_csv}")
+    
+    # Classification Report & Confusion Matrix
+    print("\n" + "-"*80)
+    print("CLASSIFICATION REPORT - SOFT VOTING ENSEMBLE (THRESHOLD = 0.50)")
+    print("-"*80)
+    print(classification_report(y_test, voting_preds))
+    print("Confusion Matrix:")
+    print(confusion_matrix(y_test, voting_preds))
+    print("-"*80)
+
+if __name__ == "__main__":
+    main()

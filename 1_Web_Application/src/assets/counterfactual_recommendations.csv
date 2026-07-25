@@ -1,0 +1,6 @@
+Test_Patient_Index,Original_Probability,BUN_Original,BUN_Reduction,SBP_Original,SBP_Reduction,UricAcid_Original,UricAcid_Reduction,Glucose_Original,Glucose_Reduction,Target_Probability,Recommendation_Text
+49,0.8795691228684016,25.0,7.0,155.33333333333334,16.0,7.7,2.8000000000000003,60.0,0.0,0.3428946763492116,Reduce Blood Urea Nitrogen (BUN) by 7.0 mg/dL to 18.0 mg/dL | Reduce Systolic Blood Pressure by 16.0 mmHg to 139.3 mmHg | Reduce Uric Acid by 2.8 mg/dL to 4.9 mg/dL
+116,0.9209793445181705,52.0,0.0,139.0,0.0,7.7,0.0,113.0,0.0,0.9209793445181705,No path found within limits
+125,0.8110503628956869,26.0,3.0,126.0,0.0,7.4,2.0,112.0,0.0,0.3422197006750413,Reduce Blood Urea Nitrogen (BUN) by 3.0 mg/dL to 23.0 mg/dL | Reduce Uric Acid by 2.0 mg/dL to 5.4 mg/dL
+189,0.9189110310648467,22.0,0.0,169.33333333333334,0.0,6.5,0.0,141.0,0.0,0.9189110310648467,No path found within limits
+200,0.9544325351901459,46.99999999999999,0.0,150.33333333333334,0.0,7.5,0.0,117.0,0.0,0.9544325351901459,No path found within limits

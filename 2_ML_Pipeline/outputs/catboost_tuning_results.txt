@@ -1,0 +1,4 @@
+CatBoost Hyperparameter Tuning Results
+======================================
+Best Parameters: {'depth': 4, 'iterations': 200, 'learning_rate': 0.1}
+Best F1 Score: 0.4795
