@@ -2,6 +2,7 @@
 
 [![Python Version](https://img.shields.io/badge/Python-3.9%2B-blue.svg)](https://www.python.org/)
 [![Streamlit App](https://img.shields.io/badge/Streamlit-1.60.0-FF4B4B.svg)](https://streamlit.io/)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Streamlit-success?logo=streamlit)](https://ckd-diagnosis-ai.streamlit.app/)
 [![Dataset](https://img.shields.io/badge/Data-CDC%20NHANES-green.svg)](https://www.cdc.gov/nchs/nhanes/)
 [![ML Framework](https://img.shields.io/badge/ML-Scikit--Learn%20%7C%20CatBoost%20%7C%20XGBoost-orange.svg)](https://scikit-learn.org/)
 [![Status](https://img.shields.io/badge/Status-Completed%20%26%20Verified-success.svg)](#)
@@ -119,6 +120,12 @@ To re-extract raw `.xpt` files from `3_Datasets/raw/` and regenerate `ckd_nhanes
 ```bash
 python 3_Datasets/preprocessing_scripts/create_ckd_dataset.py
 ```
+---
+## 🌐 Access the Live Application
+
+You can use the deployed web application directly without installing anything:
+
+**🔗 https://ckd-diagnosis-ai.streamlit.app/**
 
 ---
 
