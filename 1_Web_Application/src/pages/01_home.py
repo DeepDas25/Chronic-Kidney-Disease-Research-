@@ -131,9 +131,9 @@ st.subheader(" Research Team & Guidance")
 col_team1, col_team2, col_team3, col_guide = st.columns(4)
 
 members = [
-    (col_team1, "Deepdas Somani", "Data Engineering & Pipeline Design"),
-    (col_team2, "Viraj Kumar Sahu", "ML Modeling & Stacking Ensemble"),
-    (col_team3, "Ayan Bhandari", "Research Dev & Dashboard Design"),
+    (col_team1, "Deepdas Somani"),
+    (col_team2, "Viraj Kumar Sahu"),
+    (col_team3, "Ayan Bhandari"),
 ]
 
 for col, name, role in members:
