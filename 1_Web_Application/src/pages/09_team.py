@@ -12,18 +12,18 @@ with col1:
     <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 1.5rem;">
         <div class="team-card" style="text-align: left;">
             <h4 style="color: #0A1931 !important;">Deepdas Somani</h4>
-            <p style="color: #00a8a1; font-weight: 600; margin-top: 2px;">Data Engineering &amp; Pipeline Specialist</p>
-            <p style="color: #4A5568; font-size: 0.8rem; margin-top: 4px;">Led CDC NHANES dataset merging, zero-leakage split checkpoints, and SMOTE resampling.</p>
+            <!-- <p style="color: #00a8a1; font-weight: 600; margin-top: 2px;">Data Engineering &amp; Pipeline Specialist</p> -->
+            <!-- <p style="color: #4A5568; font-size: 0.8rem; margin-top: 4px;">Led CDC NHANES dataset merging, zero-leakage split checkpoints, and SMOTE resampling.</p> -->
         </div>
         <div class="team-card" style="text-align: left;">
             <h4 style="color: #0A1931 !important;">Viraj Kumar Sahu</h4>
-            <p style="color: #00a8a1; font-weight: 600; margin-top: 2px;">ML Scientist &amp; Stacking Architect</p>
-            <p style="color: #4A5568; font-size: 0.8rem; margin-top: 4px;">Engineered the Meta-Logistic Regression Stacking framework, cross-validations, and evaluation pipelines.</p>
+            <!-- <p style="color: #00a8a1; font-weight: 600; margin-top: 2px;">ML Scientist &amp; Stacking Architect</p> -->
+            <!-- # <p style="color: #4A5568; font-size: 0.8rem; margin-top: 4px;">Engineered the Meta-Logistic Regression Stacking framework, cross-validations, and evaluation pipelines.</p> -->
         </div>
         <div class="team-card" style="text-align: left;">
             <h4 style="color: #0A1931 !important;">Ayan Bhandari</h4>
-            <p style="color: #00a8a1; font-weight: 600; margin-top: 2px;">Research Developer &amp; Dashboard Architect</p>
-            <p style="color: #4A5568; font-size: 0.8rem; margin-top: 4px;">Designed clinical timeline layouts, literature review synthesis drafts, and Streamlit showcase web hub.</p>
+            <!-- # <p style="color: #00a8a1; font-weight: 600; margin-top: 2px;">Research Developer &amp; Dashboard Architect</p> -->
+            <!-- # <p style="color: #4A5568; font-size: 0.8rem; margin-top: 4px;">Designed clinical timeline layouts, literature review synthesis drafts, and Streamlit showcase web hub.</p> -->
         </div>
     </div>
     """, unsafe_allow_html=True)
@@ -32,8 +32,8 @@ with col1:
     st.markdown("""
     <div class="guide-card" style="text-align: left; margin-bottom: 1.5rem;">
         <h4 style="color: #0A1931 !important;">Divanshu Jain</h4>
-        <p style="color: #00a8a1; font-weight: 600; margin-top: 2px;">Project Guide &amp; Research Mentor</p>
-        <p style="color: #4A5568; font-size: 0.8rem; margin-top: 4px;">Mentored study scope, validated early-stage clinical relevance, and reviewed strict model data leakage guardrails.</p>
+        <!-- <p style="color: #00a8a1; font-weight: 600; margin-top: 2px;">Project Guide &amp; Research Mentor</p> -->
+        <!-- <p style="color: #4A5568; font-size: 0.8rem; margin-top: 4px;">Mentored study scope, validated early-stage clinical relevance, and reviewed strict model data leakage guardrails.</p> -->
     </div>
     """, unsafe_allow_html=True)
     
