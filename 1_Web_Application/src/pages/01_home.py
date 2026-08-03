@@ -136,12 +136,11 @@ members = [
     (col_team3, "Ayan Bhandari"),
 ]
 
-for col, name, role in members:
+for col, name in members:
     with col:
         st.markdown(f"""
         <div class="team-card">
             <h4>{name}</h4>
-            <p>{role}</p>
         </div>
         """, unsafe_allow_html=True)
 
